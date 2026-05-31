@@ -2,8 +2,7 @@
 
 A Python project that analyses student academic data to find patterns and predict whether a student will **Pass or Fail** using Machine Learning.
 
-Built as a personal project to practise **Pandas, NumPy, Matplotlib, Seaborn, and Scikit-learn**.
-
+I made this project to learn data analysis and machine learning. This was my first time using Pandas and Scikit-learn properly.
 ---
 
 ## What This Project Does
@@ -34,7 +33,7 @@ student_performance/
 │   ├── 06_avg_scores_by_result.png
 │   └── 07_confusion_matrix.png
 │
-├── main.py                     # Main script — run this
+├── main.py                     # Main script 
 ├── requirements.txt            # All libraries needed
 └── README.md
 ```
@@ -112,7 +111,7 @@ The dataset (`student_data.csv`) contains 50 students with these columns:
 - **Train/Test Split:** 80% train, 20% test
 - **Features used:** study_time, attendance, assignment_score, midterm_score, final_score
 - **Target:** result (Pass / Fail)
-
+Note: Accuracy is high because the dataset is small and clean. On real-world messy data it would be lower.
 ---
 
 ## Author
