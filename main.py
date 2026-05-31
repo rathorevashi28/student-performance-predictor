@@ -232,3 +232,53 @@ print(f"    Fail Probability : {probability[0] * 100:.1f}%")
 print("\n" + "=" * 55)
 print("  All done! Check the outputs/ folder for all charts.")
 print("=" * 55)
+
+
+# ─────────────────────────────────────────────────────────
+# STEP 7 — Interactive Prediction (type your own student)
+# ─────────────────────────────────────────────────────────
+print("\n" + "=" * 55)
+print("  PREDICT FOR YOUR OWN STUDENT")
+print("=" * 55)
+print("  Enter student details below.")
+print("  Press Ctrl+C anytime to exit.\n")
+
+while True:
+    try:
+        print("-" * 40)
+        name         = input("  Student Name        : ")
+        study_time   = float(input("  Study Time (1-7 hrs): "))
+        attendance   = float(input("  Attendance (0-100%) : "))
+        assignment   = float(input("  Assignment Score    : "))
+        midterm      = float(input("  Midterm Score       : "))
+        final        = float(input("  Final Score         : "))
+
+        student_input = pd.DataFrame({
+            'study_time':       [study_time],
+            'attendance':       [attendance],
+            'assignment_score': [assignment],
+            'midterm_score':    [midterm],
+            'final_score':      [final]
+        })
+
+        pred        = model.predict(student_input)[0]
+        prob        = model.predict_proba(student_input)[0]
+        result_out  = le.inverse_transform([pred])[0]
+
+        print(f"\n  ┌─────────────────────────────────┐")
+        print(f"  │  Student  : {name:<21}│")
+        print(f"  │  Result   : {result_out:<21}│")
+        print(f"  │  Pass %   : {prob[1]*100:<20.1f} │")
+        print(f"  │  Fail %   : {prob[0]*100:<20.1f} │")
+        print(f"  └─────────────────────────────────┘\n")
+
+        again = input("  Predict another student? (y/n): ").strip().lower()
+        if again != 'y':
+            print("\n  Goodbye!")
+            break
+
+    except ValueError:
+        print("\n  Please enter numbers only for scores and time.\n")
+    except KeyboardInterrupt:
+        print("\n\n  Exited.")
+        break
